@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics & Fee Structure | AMPICS - Ganpat University</title>
+    <style>
+        /* --- GUNI OFFICIAL BRAND COLORS --- */
+        :root {
+            --guni-red: #b42126;
+            --guni-yellow: #f8b01d;
+            --guni-blue: #0b1c3c;
+            --light-grey: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--light-grey); color: #333; line-height: 1.6; }
+
+        /* --- 1. TOP UTILITY BAR --- */
+        .top-bar { background-color: var(--guni-red); color: white; display: flex; justify-content: space-between; padding: 8px 50px; font-size: 12px; font-weight: bold; }
+        .top-bar a { color: white; text-decoration: none; margin-left: 20px; transition: 0.2s; }
+        .top-bar a:hover { color: var(--guni-yellow); }
+
+        /* --- 2. MAIN NAVIGATION --- */
+        .main-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background-color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 60px; }
+        .institute-name { color: var(--guni-blue); font-size: 20px; font-weight: bold; line-height: 1.2; }
+        .institute-sub { font-size: 14px; color: #666; font-weight: normal; }
+        .main-nav { list-style: none; display: flex; align-items: center; }
+        .main-nav li { margin-left: 25px; padding: 10px 0; }
+        .main-nav a { color: var(--guni-blue); text-decoration: none; font-size: 14px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        .main-nav a:hover { color: var(--guni-red); }
+        .active-link { color: var(--guni-red) !important; border-bottom: 2px solid var(--guni-red); padding-bottom: 5px; }
+
+        /* --- 3. HERO SECTION --- */
+        .academics-hero {
+            width: 100%; height: 250px; background-color: var(--guni-blue);
+            background: linear-gradient(rgba(11,28,60,0.85), rgba(11,28,60,0.85)), url('images/main-bg.jpg') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; border-bottom: 5px solid var(--guni-yellow);
+        }
+        .academics-hero h1 { font-size: 42px; color: white; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- 4. PAGE LAYOUT (Sidebar + Content) --- */
+        .page-container { display: flex; max-width: 1200px; margin: 50px auto; gap: 40px; padding: 0 20px; }
+        
+        .sidebar { flex: 1; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: fit-content; border-top: 4px solid var(--guni-red); position: sticky; top: 120px; }
+        .sidebar h3 { color: var(--guni-blue); margin-bottom: 20px; font-size: 18px; border-bottom: 2px solid var(--light-grey); padding-bottom: 10px; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 15px; }
+        .sidebar a { color: #555; text-decoration: none; font-weight: bold; display: block; transition: 0.2s; padding: 8px; border-radius: 4px; border-left: 3px solid transparent; }
+        .sidebar a:hover { background-color: var(--light-grey); color: var(--guni-red); border-left: 3px solid var(--guni-red); padding-left: 15px; }
+
+        .content-area { flex: 3; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .content-area > h2 { color: var(--guni-blue); font-size: 28px; margin-bottom: 20px; border-left: 5px solid var(--guni-red); padding-left: 15px; }
+        
+        /* Program Details Cards */
+        .program-card { border: 1px solid var(--border-color); border-radius: 8px; padding: 30px; margin-bottom: 50px; transition: 0.3s; scroll-margin-top: 100px; /* Prevents navbar from hiding the title when scrolling */ }
+        .program-card:hover { border-color: var(--guni-blue); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .program-card h3 { color: var(--guni-red); font-size: 24px; margin-bottom: 15px; }
+        
+        /* Info Grid (Duration, Eligibility, Fees) */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; background: var(--light-grey); padding: 20px; border-radius: 5px; }
+        .info-box h5 { color: var(--guni-blue); font-size: 14px; text-transform: uppercase; margin-bottom: 5px; }
+        .info-box p { color: #555; font-size: 15px; font-weight: bold; }
+        .fee-highlight { color: var(--guni-red) !important; font-size: 18px !important; }
+
+        /* Syllabus Table */
+        .syllabus-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .syllabus-table th, .syllabus-table td { border: 1px solid var(--border-color); padding: 12px 15px; text-align: left; }
+        .syllabus-table th { background-color: var(--guni-blue); color: white; font-weight: bold; text-transform: uppercase; font-size: 14px; }
+        .syllabus-table tr:nth-child(even) { background-color: var(--light-grey); }
+
+        .main-footer { background-color: #050d1e; color: #888; padding: 40px 50px; text-align: center; font-size: 14px; margin-top: 50px; }
+        /* =========================================
+           📱 MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+        @media (max-width: 768px) {
+            /* 1. Fix the Top Bar and Header */
+            .top-bar { flex-direction: column; text-align: center; gap: 10px; padding: 10px; }
+            .top-bar a { margin: 0 10px; }
+            
+            .main-header { flex-direction: column; padding: 15px; text-align: center; }
+            .logo-container { flex-direction: column; margin-bottom: 15px; }
+            .institute-name { font-size: 18px; }
+            
+            /* 2. Wrap the Navigation Menu */
+            .main-nav { flex-wrap: wrap; justify-content: center; gap: 5px; }
+            .main-nav li { margin-left: 0; padding: 5px 10px; }
+            
+            /* 3. Fix the Mega Menu so it doesn't fly off the screen */
+            .dropdown:hover .mega-menu { 
+                display: flex; flex-direction: column; 
+                width: 90vw; left: -10vw; top: 100%; 
+                padding: 15px; gap: 15px;
+            }
+            .mega-col { border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+            /* 4. Shrink Massive Fonts */
+            .carousel-text h1 { font-size: 32px; }
+            .carousel-text p { font-size: 16px; }
+            .stats-strip { flex-direction: column; gap: 30px; padding: 30px 20px; }
+            
+            /* 5. Stack ALL Grids into a Single Column */
+            .video-grid, .grid-container { grid-template-columns: 1fr; }
+            .content-section { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-left"><span>Welcome to Ganpat Vidyanagar Campus</span></div>
+        <div class="top-right"> <a href="https://admission.ganpatuniversity.ac.in/" target="_blank">Apply Now - 2026</a><a href="https://auth.dhi-edu.com/auth/realms/ganpatuniversity/protocol/openid-connect/auth?client_id=ganpat_gu&redirect_uri=https%3A%2F%2Fganpatuniversity.dhi-edu.com%2Fganpat_gu%2F&state=bd68955e-e93e-4e36-8912-0169b8872d12&response_mode=fragment&response_type=code&scope=openid&nonce=98d99c05-f0a6-45c0-b37e-4b5264b369d6&code_challenge=JyIFrW2matnGNb8fcC741vx_-NzFF4UmEOZ0ZiYq2ac&code_challenge_method=S256">Student ERP Login</a></div>
+    </div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="GUNI Logo" class="logo-img" onerror="this.src='logo.png'">
+            <div class="institute-name">
+                Ganpat University <br>
+                <span class="institute-sub">Acharya Motibhai Patel Institute of Computer Studies</span>
+            </div>
+        </div>
+        <ul class="main-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="academics.html" class="active-link">Academics</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="campus-life.html">Campus Life</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </header>
+
+    <section class="academics-hero">
+        <h1>Programs & Fee Structure</h1>
+    </section>
+
+    <div class="page-container">
+        
+        <aside class="sidebar">
+            <h3>Quick Navigate</h3>
+            <ul>
+                <li><a href="#bca">BCA (Hons.)</a></li>
+                <li><a href="#mca">MCA Program</a></li>
+                <li><a href="#integrated">Integrated BCA+MCA</a></li>
+                <li><a href="#phd">Ph.D. Research</a></li>
+            </ul>
+        </aside>
+
+        <main class="content-area">
+            <h2>Department of Computer Applications</h2>
+            <p style="margin-bottom: 40px;">Explore our comprehensive degree programs designed to build the next generation of IT leaders. Below you will find detailed information regarding course structure, duration, eligibility, and the annual fee structure.</p>
+
+            <div class="program-card" id="bca">
+                <h3>Bachelor of Computer Applications (BCA Hons.)</h3>
+                <p style="margin-bottom: 20px;">A rigorous program focusing on modern software engineering, web development (HTML, CSS, JS), and foundational computer science logic.</p>
+                
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h5>Duration</h5>
+                        <p>3 Years (Regular) / 4 Years (Honors)</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Eligibility</h5>
+                        <p>10+2 (Any Stream) from a recognized board.</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Annual Tuition Fee</h5>
+                        <p class="fee-highlight">₹ 70,000 / Year</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Key Subjects (Sem 2)</h5>
+                        <p>Web Dev, Logic Programming, DBMS</p>
+                    </div>
+                </div>
+
+               
+
+            <div class="program-card" id="mca">
+                <h3>Master of Computer Applications (MCA)</h3>
+                <p style="margin-bottom: 20px;">An advanced postgraduate degree preparing students for high-level enterprise architecture, artificial intelligence, and corporate IT leadership.</p>
+                
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h5>Duration</h5>
+                        <p>2 Years (4 Semesters)</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Eligibility</h5>
+                        <p>BCA/B.Sc (IT) or equivalent degree.</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Annual Tuition Fee</h5>
+                        <p class="fee-highlight">₹ 1,40,000 / Year</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Career Prospects</h5>
+                        <p>Software Engineer, Data Scientist, System Analyst</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card" id="integrated">
+                <h3>Integrated BCA + MCA</h3>
+                <p style="margin-bottom: 20px;">A seamless 5-year journey from foundational coding to advanced application architecture without the hassle of reapplying for a master's program.</p>
+                
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h5>Duration</h5>
+                        <p>5 Years (10 Semesters)</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Eligibility</h5>
+                        <p>10+2 with Mathematics/Computer Science.</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Annual Tuition Fee</h5>
+                        <p class="fee-highlight">₹ 1,05,000 / Year</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Advantage</h5>
+                        <p>Saves 1 year compared to standard BCA + MCA.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card" id="phd">
+                <h3>Ph.D. in Computer Science</h3>
+                <p style="margin-bottom: 20px;">For scholars dedicated to advanced research in computing technologies, AI, machine learning, and data architecture.</p>
+                
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h5>Duration</h5>
+                        <p>3 to 5 Years</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Eligibility</h5>
+                        <p>MCA/M.Tech/M.Sc in relevant field.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Ganpat University - Acharya Motibhai Patel Institute of Computer Studies.</p>
+    </footer>
+    <script>
+        // Check if the page is being reloaded
+        if (performance.getEntriesByType("navigation")[0].type === "reload") {
+            // If yes, instantly send them back to the homepage
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

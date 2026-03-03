@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training & Placements | AMPICS - Ganpat University</title>
+    <style>
+        /* --- GUNI OFFICIAL BRAND COLORS --- */
+        :root {
+            --guni-red: #b42126;
+            --guni-yellow: #f8b01d;
+            --guni-blue: #0b1c3c;
+            --light-grey: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+        body { background-color: white; color: #333; line-height: 1.6; }
+
+        /* --- 1. TOP UTILITY BAR --- */
+        .top-bar { background-color: var(--guni-red); color: white; display: flex; justify-content: space-between; padding: 8px 50px; font-size: 12px; font-weight: bold; }
+        .top-bar a { color: white; text-decoration: none; margin-left: 20px; transition: 0.2s; }
+        .top-bar a:hover { color: var(--guni-yellow); }
+
+        /* --- 2. MAIN NAVIGATION --- */
+        .main-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background-color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 60px; }
+        .institute-name { color: var(--guni-blue); font-size: 20px; font-weight: bold; line-height: 1.2; }
+        .institute-sub { font-size: 14px; color: #666; font-weight: normal; }
+        .main-nav { list-style: none; display: flex; align-items: center; }
+        .main-nav li { margin-left: 25px; padding: 10px 0; }
+        .main-nav a { color: var(--guni-blue); text-decoration: none; font-size: 14px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        .main-nav a:hover { color: var(--guni-red); }
+        .active-link { color: var(--guni-red) !important; border-bottom: 2px solid var(--guni-red); padding-bottom: 5px; }
+
+        /* --- 3. PLACEMENTS HERO --- */
+        .placements-hero {
+            width: 100%; height: 350px; background-color: var(--guni-blue);
+            background: linear-gradient(rgba(11,28,60,0.85), rgba(11,28,60,0.9)), url('images/main-bg.jpg') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; border-bottom: 5px solid var(--guni-yellow);
+        }
+        .placements-hero h1 { font-size: 48px; color: var(--guni-yellow); text-transform: uppercase; letter-spacing: 2px; }
+        .placements-hero p { font-size: 18px; font-weight: 300; margin-top: 10px; max-width: 800px; }
+
+        /* --- 4. OFFICIAL PLACEMENT STATS --- */
+        .stats-strip { display: flex; justify-content: center; flex-wrap: wrap; gap: 60px; background-color: var(--light-grey); padding: 50px 20px; border-bottom: 1px solid var(--border-color); }
+        .stat-item { text-align: center; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); width: 250px; border-top: 4px solid var(--guni-red); transition: 0.3s; }
+        .stat-item:hover { transform: translateY(-5px); border-top-color: var(--guni-blue); }
+        .stat-item h3 { font-size: 36px; color: var(--guni-blue); margin-bottom: 10px; }
+        .stat-item p { font-size: 14px; text-transform: uppercase; font-weight: bold; color: #666; }
+
+        /* --- 5. TOP RECRUITERS SECTION --- */
+        .recruiters-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; text-align: center; }
+        .recruiters-section h2 { color: var(--guni-blue); font-size: 32px; margin-bottom: 15px; text-transform: uppercase; }
+        .recruiters-section > p { color: #555; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        
+        .recruiters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+        .recruiter-box { 
+            background: white; padding: 25px 15px; border-radius: 5px; border: 1px solid var(--border-color);
+            font-size: 18px; font-weight: bold; color: var(--guni-blue); transition: 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .recruiter-box:hover { background: var(--light-grey); box-shadow: 0 5px 15px rgba(0,0,0,0.08); transform: scale(1.05); color: var(--guni-red); border-color: var(--guni-red); }
+
+        /* --- 6. NOTABLE ALUMNI SUCCESS --- */
+        .alumni-section { background-color: var(--guni-blue); color: white; padding: 70px 20px; text-align: center; margin-top: 60px; }
+        .alumni-section h2 { font-size: 32px; color: var(--guni-yellow); margin-bottom: 40px; text-transform: uppercase; }
+        
+        .alumni-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
+        .alumni-card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 8px; border-top: 3px solid var(--guni-yellow); text-align: left; transition: 0.3s; }
+        .alumni-card:hover { background: rgba(255,255,255,0.1); }
+        .alumni-card h4 { color: white; font-size: 22px; margin-bottom: 5px; }
+        .alumni-card p { color: #aaa; font-size: 15px; }
+        .alumni-company { display: inline-block; margin-top: 15px; padding: 5px 10px; background: var(--guni-red); color: white; border-radius: 4px; font-size: 12px; font-weight: bold; }
+
+        /* --- 7. FOOTER --- */
+        .main-footer { background-color: #050d1e; color: #888; padding: 40px 50px; text-align: center; font-size: 14px; }
+        /* =========================================
+           📱 MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+        @media (max-width: 768px) {
+            /* 1. Fix the Top Bar and Header */
+            .top-bar { flex-direction: column; text-align: center; gap: 10px; padding: 10px; }
+            .top-bar a { margin: 0 10px; }
+            
+            .main-header { flex-direction: column; padding: 15px; text-align: center; }
+            .logo-container { flex-direction: column; margin-bottom: 15px; }
+            .institute-name { font-size: 18px; }
+            
+            /* 2. Wrap the Navigation Menu */
+            .main-nav { flex-wrap: wrap; justify-content: center; gap: 5px; }
+            .main-nav li { margin-left: 0; padding: 5px 10px; }
+            
+            /* 3. Fix the Mega Menu so it doesn't fly off the screen */
+            .dropdown:hover .mega-menu { 
+                display: flex; flex-direction: column; 
+                width: 90vw; left: -10vw; top: 100%; 
+                padding: 15px; gap: 15px;
+            }
+            .mega-col { border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+            /* 4. Shrink Massive Fonts */
+            .carousel-text h1 { font-size: 32px; }
+            .carousel-text p { font-size: 16px; }
+            .stats-strip { flex-direction: column; gap: 30px; padding: 30px 20px; }
+            
+            /* 5. Stack ALL Grids into a Single Column */
+            .video-grid, .grid-container { grid-template-columns: 1fr; }
+            .content-section { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-left"><span>Welcome to Ganpat Vidyanagar Campus</span></div>
+        <div class="top-right">
+            <a href="https://admission.ganpatuniversity.ac.in/" target="_blank">Apply Now - 2026</a>
+            <a href="https://auth.dhi-edu.com/auth/realms/ganpatuniversity/protocol/openid-connect/auth?client_id=ganpat_gu&redirect_uri=https%3A%2F%2Fganpatuniversity.dhi-edu.com%2Fganpat_gu%2F&state=bd68955e-e93e-4e36-8912-0169b8872d12&response_mode=fragment&response_type=code&scope=openid&nonce=98d99c05-f0a6-45c0-b37e-4b5264b369d6&code_challenge=JyIFrW2matnGNb8fcC741vx_-NzFF4UmEOZ0ZiYq2ac&code_challenge_method=S256">Student ERP Login</a>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="logo.png" alt="GUNI Logo" class="logo-img" onerror="this.src='logo.png'">
+            <div class="institute-name">
+                Ganpat University <br>
+                <span class="institute-sub">Acharya Motibhai Patel Institute of Computer Studies</span>
+            </div>
+        </div>
+        <ul class="main-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="academics.html">Academics</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="placements.html" class="active-link">Placements</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </header>
+
+    <section class="placements-hero">
+        <h1>Training & Placement Cell</h1>
+        <p>Bridging the gap between academic excellence and corporate success. We provide comprehensive aptitude training, interview preparation, and direct industry connections.</p>
+    </section>
+
+    <section class="stats-strip">
+        <div class="stat-item">
+            <h3>₹ 19.68 LPA</h3>
+            <p>Highest Package Offered</p>
+        </div>
+        <div class="stat-item">
+            <h3>864+</h3>
+            <p>Companies Visited</p>
+        </div>
+        <div class="stat-item">
+            <h3>1,251</h3>
+            <p>Students Placed (2024-25)</p>
+        </div>
+        <div class="stat-item">
+            <h3>100%</h3>
+            <p>Internship Assistance</p>
+        </div>
+    </section>
+
+    <section class="recruiters-section">
+        <h2>Our Prime Hiring Partners</h2>
+        <p>AMPICS graduates are highly sought after by top-tier IT companies, core engineering firms, and multinational corporations across the globe.</p>
+        
+        <div class="recruiters-grid">
+            <div class="recruiter-box">Tata Consultancy Services (TCS)</div>
+            <div class="recruiter-box">Amazon</div>
+            <div class="recruiter-box">IBM</div>
+            <div class="recruiter-box">Infosys</div>
+            <div class="recruiter-box">Capgemini</div>
+            <div class="recruiter-box">Tech Mahindra</div>
+            <div class="recruiter-box">HDFC Bank</div>
+            <div class="recruiter-box">Reliance Industries</div>
+            <div class="recruiter-box">Adani Group</div>
+            <div class="recruiter-box">Oracle</div>
+        </div>
+    </section>
+
+    <section class="alumni-section">
+        <h2>Notable Alumni Placements</h2>
+        <div class="alumni-grid">
+            <div class="alumni-card">
+                <h4>Shukal Siddharth</h4>
+                <p>Bachelor of Computer Applications (BCA)</p>
+                <span class="alumni-company">Placed at TCS</span>
+            </div>
+            <div class="alumni-card">
+                <h4>Tirth Patel</h4>
+                <p>Bachelor of Computer Applications (BCA)</p>
+                <span class="alumni-company">Placed at Fincasys Heritage Pvt. Ltd.</span>
+            </div>
+            <div class="alumni-card">
+                <h4>Prajapati Yatin</h4>
+                <p>Bachelor of Computer Applications (BCA)</p>
+                <span class="alumni-company">Placed at Dash Technology</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Ganpat University - Acharya Motibhai Patel Institute of Computer Studies.</p>
+    </footer>
+
+    <script>
+        if (performance.getEntriesByType("navigation")[0].type === "reload") {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

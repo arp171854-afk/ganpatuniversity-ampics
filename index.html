@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acharya Motibhai Patel Institute of Computer Studies | GUNI</title>
+    <style>
+        /* --- GUNI OFFICIAL BRAND COLORS --- */
+        :root {
+            --guni-red: #b42126;
+            --guni-yellow: #f8b01d;
+            --guni-blue: #0b1c3c;
+            --light-grey: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+        body { background-color: white; color: #333; line-height: 1.6; }
+
+        /* --- 1. TOP UTILITY BAR --- */
+        .top-bar {
+            background-color: var(--guni-red);
+            color: white; display: flex; justify-content: space-between;
+            padding: 8px 50px; font-size: 12px; font-weight: bold;
+        }
+        .top-bar a { color: white; text-decoration: none; margin-left: 20px; transition: 0.2s; }
+        .top-bar a:hover { color: var(--guni-yellow); }
+
+        /* --- 2. MAIN NAVIGATION --- */
+        .main-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 50px; background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 60px; }
+        .institute-name { color: var(--guni-blue); font-size: 20px; font-weight: bold; line-height: 1.2; }
+        .institute-sub { font-size: 14px; color: #666; font-weight: normal; }
+
+        .main-nav { list-style: none; display: flex; align-items: center; }
+        .main-nav li { margin-left: 25px; padding: 10px 0; }
+        .main-nav a { 
+            color: var(--guni-blue); text-decoration: none; 
+            font-size: 14px; font-weight: bold; text-transform: uppercase; transition: 0.3s;
+        }
+        .main-nav a:hover { color: var(--guni-red); }
+
+        /* --- MEGA MENU LOGIC --- */
+        .dropdown { position: relative; }
+        .mega-menu {
+            position: absolute; top: 100%; left: -200px;
+            width: 700px; background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: none; border-top: 4px solid var(--guni-red);
+            padding: 30px; z-index: 1000; border-radius: 0 0 8px 8px;
+        }
+        .dropdown:hover .mega-menu {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+            animation: slideDown 0.3s ease-out;
+        }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .mega-col h4 { color: var(--guni-red); margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; font-size: 15px; text-transform: uppercase; }
+        .mega-col a { display: block; color: var(--guni-blue); padding: 8px 0; font-size: 14px; font-weight: normal; transition: 0.2s; text-transform: none; }
+        .mega-col a:hover { color: var(--guni-red); padding-left: 8px; background-color: var(--light-grey); }
+
+        /* --- 3. HERO CAROUSEL --- */
+        .carousel-container { width: 100%; height: 550px; background-color: var(--guni-blue); position: relative; display: flex; align-items: center; justify-content: center; border-bottom: 5px solid var(--guni-yellow); }
+        
+        /* 👇 THIS IS WHERE YOUR BACKGROUND IMAGE IS SET 👇 */
+        .carousel-slide {
+            width: 100%; height: 100%; position: absolute;
+            /* Change 'images/main-bg.jpg' to exactly match your photo's name */
+            background: linear-gradient(rgba(11,28,60,0.7), rgba(11,28,60,0.8)), url('images/main-bg.jpg') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
+        }
+        
+        .carousel-text h1 { font-size: 54px; color: var(--guni-yellow); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); letter-spacing: 1px; margin-bottom: 10px; }
+        .carousel-text p { font-size: 22px; font-weight: 300; }
+
+        /* --- 4. STATS STRIP --- */
+        .stats-strip { display: flex; justify-content: center; gap: 80px; background-color: var(--guni-blue); color: white; padding: 40px 20px; }
+        .stat-item { text-align: center; }
+        .stat-item h3 { font-size: 42px; color: var(--guni-yellow); margin-bottom: 5px; }
+        .stat-item p { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #ccc; }
+
+        /* --- 5. LATEST VIDEOS / EVENTS --- */
+        .content-section { padding: 80px 50px; background-color: var(--light-grey); }
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; margin-bottom: 40px; }
+        .section-header h2 { color: var(--guni-blue); font-size: 28px; text-transform: uppercase; }
+        .section-header a { color: var(--guni-red); text-decoration: none; font-weight: bold; font-size: 14px; }
+
+        .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .video-card { background: white; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+        .video-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .video-thumbnail { width: 100%; height: 220px; object-fit: cover; }
+        .video-info { padding: 20px; }
+        .video-info h4 { color: var(--guni-blue); font-size: 18px; margin-bottom: 12px; line-height: 1.4; }
+        .video-date { font-size: 13px; color: #777; font-weight: bold; }
+
+        /* --- 6. FOOTER --- */
+        .main-footer { background-color: #050d1e; color: #888; padding: 50px; text-align: center; font-size: 14px; }
+        .main-footer a { color: var(--guni-yellow); text-decoration: none; font-weight: bold; }
+        .main-footer a:hover { color: white; }
+        /* --- CUSTOM VIDEO THUMBNAIL OVERLAY --- */
+        .thumbnail-wrapper {
+            position: relative; /* This keeps the play button inside the image */
+            display: block;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background-color: #000; /* Black background while image loads */
+        }
+
+        .thumbnail-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        /* The Play Button */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Perfectly centers the button */
+            font-size: 40px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%; /* Makes it a perfect circle */
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Hover Effects */
+        .thumbnail-wrapper:hover img {
+            opacity: 0.7; /* Dims the image slightly when hovered */
+        }
+        
+        .thumbnail-wrapper:hover .play-button {
+            background-color: var(--guni-red); /* Button turns GUNI Red on hover */
+            transform: translate(-50%, -50%) scale(1.1); /* Button grows slightly */
+        }
+        /* =========================================
+           📱 MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+        @media (max-width: 768px) {
+            /* 1. Fix the Top Bar and Header */
+            .top-bar { flex-direction: column; text-align: center; gap: 10px; padding: 10px; }
+            .top-bar a { margin: 0 10px; }
+            
+            .main-header { flex-direction: column; padding: 15px; text-align: center; }
+            .logo-container { flex-direction: column; margin-bottom: 15px; }
+            .institute-name { font-size: 18px; }
+            
+            /* 2. Wrap the Navigation Menu */
+            .main-nav { flex-wrap: wrap; justify-content: center; gap: 5px; }
+            .main-nav li { margin-left: 0; padding: 5px 10px; }
+            
+            /* 3. Fix the Mega Menu so it doesn't fly off the screen */
+            .dropdown:hover .mega-menu { 
+                display: flex; flex-direction: column; 
+                width: 90vw; left: -10vw; top: 100%; 
+                padding: 15px; gap: 15px;
+            }
+            .mega-col { border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+            /* 4. Shrink Massive Fonts */
+            .carousel-text h1 { font-size: 32px; }
+            .carousel-text p { font-size: 16px; }
+            .stats-strip { flex-direction: column; gap: 30px; padding: 30px 20px; }
+            
+            /* 5. Stack ALL Grids into a Single Column */
+            .video-grid, .grid-container { grid-template-columns: 1fr; }
+            .content-section { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-left">
+            <span>Welcome to Ganpat Vidyanagar Campus</span>
+        </div>
+        <div class="top-right">
+             <a href="https://admission.ganpatuniversity.ac.in/" target="_blank">Apply Now - 2026</a>
+            <a href="https://auth.dhi-edu.com/auth/realms/ganpatuniversity/protocol/openid-connect/auth?client_id=ganpat_gu&redirect_uri=https%3A%2F%2Fganpatuniversity.dhi-edu.com%2Fganpat_gu%2F&state=bd68955e-e93e-4e36-8912-0169b8872d12&response_mode=fragment&response_type=code&scope=openid&nonce=98d99c05-f0a6-45c0-b37e-4b5264b369d6&code_challenge=JyIFrW2matnGNb8fcC741vx_-NzFF4UmEOZ0ZiYq2ac&code_challenge_method=S256">Student ERP Login</a>
+          
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="GUNI Logo" class="logo-img">
+            <div class="institute-name">
+                Ganpat University <br>
+                <span class="institute-sub">Acharya Motibhai Patel Institute of Computer Studies</span>
+            </div>
+        </div>
+        <ul class="main-nav">
+            <li><a href="about.html">About Us</a></li>
+            
+            <li class="dropdown">
+                <a href="academics.html">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="mega-col">
+                        <h4>Degree Programs</h4>
+                        <a href="academics.html#bca">BCA (Hons.)</a>
+                        <a href="academics.html#mca">MCA (2 Years)</a>
+                        <a href="academics.html#integrated">Integrated BCA+MCA</a>
+                        <a href="academics.html#phd">Ph.D. in Computer Science</a>
+
+                    </div>
+                    <div class="mega-col">
+                        <h4>Syllabus & Resources</h4>
+                        <a href="#">Academic Calendar 2026</a>
+                        <a href="#">Library Resources</a>
+                    </div>
+                    <div class="mega-col">
+                        <h4>Tech Innovation</h4>
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=300&q=80" alt="Coding Lab" style="width:100%; border-radius:5px; margin-bottom:10px;">
+                        <p style="font-size: 12px; color: #555; line-height: 1.4;">State-of-the-art coding labs equipped to empower structural programming and advanced web development.</p>
+                    </div>
+                </div>
+            </li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="placements.html">Placements</a></li>
+            <li><a href="campus-life.html">Campus Life</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </header>
+
+    <section class="carousel-container">
+        <div class="carousel-slide">
+            <div class="carousel-text">
+                <h1>Shape the Digital Frontier</h1>
+                <p>AMPICS: Leading IT Education in North Gujarat Since 1999</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-strip">
+        <div class="stat-item">
+            <h3>1999</h3>
+            <p>Year Established</p>
+        </div>
+        <div class="stat-item">
+            <h3>3.11</h3>
+            <p>NAAC CGPA</p>
+        </div>
+        <div class="stat-item">
+            <h3>Top</h3>
+            <p>Placement Record</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Campus Life & Initiatives</h2>
+            <a href="#">VIEW ALL EVENTS &raquo;</a>
+        </div>
+        
+       <div class="video-grid">
+            <div class="video-card">
+                <a href="https://www.youtube.com/watch?v=zXl3gmy3eXQ" target="_blank" class="thumbnail-wrapper">
+                    <img src="images/event1.jpg" alt="AMPICS TechFest" class="video-thumbnail">
+                   
+                </a>
+                <div class="video-info">
+                    <h4>AMPICS Annual TechFest & Hackathon</h4>
+                    <div class="video-date">📅 Coming Soon</div>
+                </div>
+            </div>
+            
+            <div class="video-card">
+                <a href="https://www.youtube.com/watch?v=YTnwFV7TtOs&list=RDYTnwFV7TtOs&start_radio=1&t=3s" target="_blank" class="thumbnail-wrapper">
+                    <img src="images/event2.jpg" alt="Yuva Rangat" class="video-thumbnail">
+                    
+                </a>
+                <div class="video-info">
+                    <h4>Yuva Rangat Garba Mahotsav</h4>
+                    <div class="video-date">📅 September 2025</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <a href="https://www.youtube.com/watch?v=C3P2Ny5yYs8" target="_blank" class="thumbnail-wrapper">
+                    <img src="images/event3.jpg" alt="IBM Day" class="video-thumbnail">
+                   
+                </a>
+                <div class="video-info">
+                    <h4>IBM Day & Tech Workshops</h4>
+                    <div class="video-date">📅 October 2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Ganpat University - Acharya Motibhai Patel Institute of Computer Studies.</p>
+        <p style="margin-top: 10px;">Designed for BCA Project Showcase | <a href="#">Developer Team Portal</a></p>
+    </footer>
+
+</body>
+</html>

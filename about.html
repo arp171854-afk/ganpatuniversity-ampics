@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | AMPICS - Ganpat University</title>
+    <style>
+        /* --- GUNI OFFICIAL BRAND COLORS --- */
+        :root {
+            --guni-red: #b42126;
+            --guni-yellow: #f8b01d;
+            --guni-blue: #0b1c3c;
+            --light-grey: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+        body { background-color: white; color: #333; line-height: 1.6; }
+
+        /* --- 1. TOP UTILITY BAR (Matches Homepage) --- */
+        .top-bar {
+            background-color: var(--guni-red); color: white; display: flex; justify-content: space-between;
+            padding: 8px 50px; font-size: 12px; font-weight: bold;
+        }
+        .top-bar a { color: white; text-decoration: none; margin-left: 20px; transition: 0.2s; }
+        .top-bar a:hover { color: var(--guni-yellow); }
+
+        /* --- 2. MAIN NAVIGATION (Matches Homepage) --- */
+        .main-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 50px; background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 60px; }
+        .institute-name { color: var(--guni-blue); font-size: 20px; font-weight: bold; line-height: 1.2; }
+        .institute-sub { font-size: 14px; color: #666; font-weight: normal; }
+        .main-nav { list-style: none; display: flex; align-items: center; }
+        .main-nav li { margin-left: 25px; padding: 10px 0; }
+        .main-nav a { color: var(--guni-blue); text-decoration: none; font-size: 14px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        .main-nav a:hover { color: var(--guni-red); }
+
+        /* --- 3. ABOUT US HERO SECTION --- */
+        .about-hero {
+            width: 100%; height: 350px; background-color: var(--guni-blue);
+            background: linear-gradient(rgba(11,28,60,0.8), rgba(11,28,60,0.9)), url('images/main-bg.jpg') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; border-bottom: 5px solid var(--guni-red);
+        }
+        .about-hero h1 { font-size: 48px; color: var(--guni-yellow); text-transform: uppercase; letter-spacing: 2px; }
+        .about-hero p { font-size: 18px; font-weight: 300; margin-top: 10px; }
+
+        /* --- 4. ABOUT CONTENT SECTION --- */
+        .about-content {
+            display: flex; max-width: 1200px; margin: 60px auto; padding: 0 20px; gap: 50px;
+        }
+        .about-text { flex: 2; }
+        .about-text h2 { color: var(--guni-blue); font-size: 32px; margin-bottom: 20px; border-left: 5px solid var(--guni-red); padding-left: 15px; }
+        .about-text p { font-size: 16px; margin-bottom: 20px; color: #555; text-align: justify; }
+        
+        /* Sidebar Stats Panel */
+        .about-stats {
+            flex: 1; background-color: var(--light-grey); padding: 30px; border-radius: 8px;
+            border-top: 5px solid var(--guni-yellow); box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .about-stats h3 { color: var(--guni-blue); margin-bottom: 20px; font-size: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px;}
+        .stat-line { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 15px; border-bottom: 1px dashed #ddd; padding-bottom: 5px;}
+        .stat-line strong { color: var(--guni-red); }
+
+        /* --- 5. INFRASTRUCTURE & FACILITIES --- */
+        .facilities-section { background-color: var(--guni-blue); padding: 60px 20px; color: white; text-align: center; }
+        .facilities-section h2 { font-size: 32px; color: var(--guni-yellow); margin-bottom: 40px; text-transform: uppercase; }
+        
+        .facility-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; max-width: 1200px; margin: 0 auto;
+        }
+        .facility-box {
+            background: rgba(255,255,255,0.1); padding: 25px 15px; border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;
+        }
+        .facility-box:hover { background: var(--guni-red); transform: translateY(-5px); border-color: var(--guni-red); }
+        .facility-box h4 { font-size: 18px; letter-spacing: 1px; }
+
+        /* --- 6. FOOTER (Matches Homepage) --- */
+        .main-footer { background-color: #050d1e; color: #888; padding: 50px; text-align: center; font-size: 14px; }
+        /* =========================================
+           📱 MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+        @media (max-width: 768px) {
+            /* 1. Fix the Top Bar and Header */
+            .top-bar { flex-direction: column; text-align: center; gap: 10px; padding: 10px; }
+            .top-bar a { margin: 0 10px; }
+            
+            .main-header { flex-direction: column; padding: 15px; text-align: center; }
+            .logo-container { flex-direction: column; margin-bottom: 15px; }
+            .institute-name { font-size: 18px; }
+            
+            /* 2. Wrap the Navigation Menu */
+            .main-nav { flex-wrap: wrap; justify-content: center; gap: 5px; }
+            .main-nav li { margin-left: 0; padding: 5px 10px; }
+            
+            /* 3. Fix the Mega Menu so it doesn't fly off the screen */
+            .dropdown:hover .mega-menu { 
+                display: flex; flex-direction: column; 
+                width: 90vw; left: -10vw; top: 100%; 
+                padding: 15px; gap: 15px;
+            }
+            .mega-col { border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+            /* 4. Shrink Massive Fonts */
+            .carousel-text h1 { font-size: 32px; }
+            .carousel-text p { font-size: 16px; }
+            .stats-strip { flex-direction: column; gap: 30px; padding: 30px 20px; }
+            
+            /* 5. Stack ALL Grids into a Single Column */
+            .video-grid, .grid-container { grid-template-columns: 1fr; }
+            .content-section { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-left"><span>Welcome to Ganpat Vidyanagar Campus</span></div>
+        <div class="top-right">
+             <a href="https://admission.ganpatuniversity.ac.in/" target="_blank">Apply Now - 2026</a>
+            <a href="https://auth.dhi-edu.com/auth/realms/ganpatuniversity/protocol/openid-connect/auth?client_id=ganpat_gu&redirect_uri=https%3A%2F%2Fganpatuniversity.dhi-edu.com%2Fganpat_gu%2F&state=bd68955e-e93e-4e36-8912-0169b8872d12&response_mode=fragment&response_type=code&scope=openid&nonce=98d99c05-f0a6-45c0-b37e-4b5264b369d6&code_challenge=JyIFrW2matnGNb8fcC741vx_-NzFF4UmEOZ0ZiYq2ac&code_challenge_method=S256">Student ERP Login</a>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="logo.png" alt="GUNI Logo" class="logo-img">
+            <div class="institute-name">
+                Ganpat University <br>
+                <span class="institute-sub">Acharya Motibhai Patel Institute of Computer Studies</span>
+            </div>
+        </div>
+        <ul class="main-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" style="color: var(--guni-red); border-bottom: 2px solid var(--guni-red);">About Us</a></li>
+            <li><a href="academics.html">Academics</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="campus-life.html">Campus Life</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </header>
+
+    <section class="about-hero">
+        <h1>About AMPICS</h1>
+        <p>A Legacy of Excellence in Technology Education Since 1999</p>
+    </section>
+
+    <section class="about-content">
+        <div class="about-text">
+            <h2>Our Institute Overview</h2>
+            <p>Acharya Motibhai Patel Institute of Computer Studies (AMPICS) is situated on the sprawling Ganpat Vidyanagar campus along the Mehsana-Gozaria Highway in Gujarat. Established in 1999, AMPICS stands proudly as a premier private institute dedicated to advancing computer studies and technology education in the region.</p>
+            
+            <p>Affiliated with Ganpat University and formally accredited by the All India Council for Technical Education (AICTE), the institute is built on a foundation of rigorous teaching pedagogy. Beyond standard academics, AMPICS is recognized as a leader in research, innovation, and holistic student development.</p>
+
+            <p>Great emphasis is placed on activities beyond the classroom. This is heavily supported by our state-of-the-art infrastructure, vibrant extracurricular initiatives, and a robust network of national and international collaborations. Our placement opportunities are highly varied, ensuring students find dynamic roles in the corporate sector, public sector, or embark on their own journeys in entrepreneurship.</p>
+        </div>
+
+        <div class="about-stats">
+            <h3>AMPICS At A Glance</h3>
+            <div class="stat-line"><span>Established</span> <strong>1999</strong></div>
+            <div class="stat-line"><span>Institute Type</span> <strong>Private / Coed</strong></div>
+            <div class="stat-line"><span>Affiliation</span> <strong>Ganpat University</strong></div>
+            <div class="stat-line"><span>Accreditation</span> <strong>AICTE Approved</strong></div>
+            <div class="stat-line"><span>Campus Size</span> <strong>272 Acres</strong></div>
+            <div class="stat-line"><span>Total Faculty</span> <strong>88 Experts</strong></div>
+            <div class="stat-line"><span>Location</span> <strong>Mehsana, Gujarat</strong></div>
+        </div>
+    </section>
+
+    <section class="facilities-section">
+        <h2>Campus Facilities & Infrastructure</h2>
+        <div class="facility-grid">
+            <div class="facility-box"><h4>High-Tech Computer Labs</h4></div>
+            <div class="facility-box"><h4>Central Wi-Fi Campus</h4></div>
+            <div class="facility-box"><h4>A/C Classrooms & Theatres</h4></div>
+            <div class="facility-box"><h4>Advanced Library</h4></div>
+            <div class="facility-box"><h4>Boys & Girls Hostels</h4></div>
+            <div class="facility-box"><h4>Central Mess & Canteen</h4></div>
+            <div class="facility-box"><h4>Medical Facilities</h4></div>
+            <div class="facility-box"><h4>Sports Grounds & Gym</h4></div>
+            <div class="facility-box"><h4>Auditorium & Conf. Rooms</h4></div>
+            <div class="facility-box"><h4>Campus ATM</h4></div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Ganpat University - Acharya Motibhai Patel Institute of Computer Studies.</p>
+    </footer>
+    <script>
+        // Check if the page is being reloaded
+        if (performance.getEntriesByType("navigation")[0].type === "reload") {
+            // If yes, instantly send them back to the homepage
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

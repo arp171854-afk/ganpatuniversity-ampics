@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life | AMPICS - Ganpat University</title>
+    <style>
+        /* --- GUNI OFFICIAL BRAND COLORS --- */
+        :root {
+            --guni-red: #b42126;
+            --guni-yellow: #f8b01d;
+            --guni-blue: #0b1c3c;
+            --light-grey: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+        body { background-color: white; color: #333; line-height: 1.6; }
+
+        /* --- 1. TOP UTILITY BAR --- */
+        .top-bar { background-color: var(--guni-red); color: white; display: flex; justify-content: space-between; padding: 8px 50px; font-size: 12px; font-weight: bold; }
+        .top-bar a { color: white; text-decoration: none; margin-left: 20px; transition: 0.2s; }
+        .top-bar a:hover { color: var(--guni-yellow); }
+
+        /* --- 2. MAIN NAVIGATION --- */
+        .main-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background-color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 60px; }
+        .institute-name { color: var(--guni-blue); font-size: 20px; font-weight: bold; line-height: 1.2; }
+        .institute-sub { font-size: 14px; color: #666; font-weight: normal; }
+        .main-nav { list-style: none; display: flex; align-items: center; }
+        .main-nav li { margin-left: 25px; padding: 10px 0; }
+        .main-nav a { color: var(--guni-blue); text-decoration: none; font-size: 14px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        .main-nav a:hover { color: var(--guni-red); }
+        .active-link { color: var(--guni-red) !important; border-bottom: 2px solid var(--guni-red); padding-bottom: 5px; }
+
+        /* --- 3. CAMPUS HERO SECTION --- */
+        .campus-hero {
+            width: 100%; height: 400px; background-color: var(--guni-blue);
+            background: linear-gradient(rgba(11,28,60,0.6), rgba(11,28,60,0.8)), url('https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; border-bottom: 5px solid var(--guni-yellow);
+        }
+        .campus-hero h1 { font-size: 50px; color: white; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .campus-hero p { font-size: 20px; font-weight: 300; margin-top: 10px; color: var(--guni-yellow); }
+
+        /* --- 4. FEATURE SECTIONS (Nature, Sports, Events) --- */
+        .feature-section { display: flex; flex-wrap: wrap; max-width: 1200px; margin: 60px auto; padding: 0 20px; gap: 40px; align-items: center; }
+        .feature-section.reverse { flex-direction: row-reverse; } /* Swaps image and text sides */
+        
+        .feature-text { flex: 1; min-width: 300px; }
+        .feature-text h2 { color: var(--guni-blue); font-size: 32px; margin-bottom: 20px; border-left: 5px solid var(--guni-red); padding-left: 15px; text-transform: uppercase; }
+        .feature-text p { font-size: 16px; color: #555; margin-bottom: 15px; text-align: justify; }
+        
+        .feature-image-grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; min-width: 300px; }
+        .feature-image-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
+        .feature-image-grid img:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+        .large-img { grid-column: span 2; height: 300px !important; } /* Makes one image span the whole top row */
+
+        /* --- 5. AMENITIES STRIP --- */
+        .amenities-strip { background-color: var(--guni-blue); color: white; padding: 60px 20px; margin-top: 40px; text-align: center; }
+        .amenities-strip h2 { color: var(--guni-yellow); font-size: 30px; margin-bottom: 40px; text-transform: uppercase; }
+        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .amenity-card { background: rgba(255,255,255,0.05); padding: 30px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .amenity-card:hover { background: var(--guni-red); border-color: var(--guni-red); transform: translateY(-10px); }
+        .amenity-card h3 { font-size: 18px; letter-spacing: 1px; }
+
+        /* --- 6. FOOTER --- */
+        .main-footer { background-color: #050d1e; color: #888; padding: 40px 50px; text-align: center; font-size: 14px; }
+        /* =========================================
+           📱 MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+        @media (max-width: 768px) {
+            /* 1. Fix the Top Bar and Header */
+            .top-bar { flex-direction: column; text-align: center; gap: 10px; padding: 10px; }
+            .top-bar a { margin: 0 10px; }
+            
+            .main-header { flex-direction: column; padding: 15px; text-align: center; }
+            .logo-container { flex-direction: column; margin-bottom: 15px; }
+            .institute-name { font-size: 18px; }
+            
+            /* 2. Wrap the Navigation Menu */
+            .main-nav { flex-wrap: wrap; justify-content: center; gap: 5px; }
+            .main-nav li { margin-left: 0; padding: 5px 10px; }
+            
+            /* 3. Fix the Mega Menu so it doesn't fly off the screen */
+            .dropdown:hover .mega-menu { 
+                display: flex; flex-direction: column; 
+                width: 90vw; left: -10vw; top: 100%; 
+                padding: 15px; gap: 15px;
+            }
+            .mega-col { border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+            /* 4. Shrink Massive Fonts */
+            .carousel-text h1 { font-size: 32px; }
+            .carousel-text p { font-size: 16px; }
+            .stats-strip { flex-direction: column; gap: 30px; padding: 30px 20px; }
+            
+            /* 5. Stack ALL Grids into a Single Column */
+            .video-grid, .grid-container { grid-template-columns: 1fr; }
+            .content-section { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-left"><span>Welcome to Ganpat Vidyanagar Campus</span></div>
+        <div class="top-right">
+            
+            <a href="https://admission.ganpatuniversity.ac.in/" target="_blank">Apply Now - 2026</a>
+            <a href="https://auth.dhi-edu.com/auth/realms/ganpatuniversity/protocol/openid-connect/auth?client_id=ganpat_gu&redirect_uri=https%3A%2F%2Fganpatuniversity.dhi-edu.com%2Fganpat_gu%2F&state=bd68955e-e93e-4e36-8912-0169b8872d12&response_mode=fragment&response_type=code&scope=openid&nonce=98d99c05-f0a6-45c0-b37e-4b5264b369d6&code_challenge=JyIFrW2matnGNb8fcC741vx_-NzFF4UmEOZ0ZiYq2ac&code_challenge_method=S256">Student ERP Login</a>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="logo.png" alt="GUNI Logo" class="logo-img" onerror="this.src='logo.png'">
+            <div class="institute-name">
+                Ganpat University <br>
+                <span class="institute-sub">Acharya Motibhai Patel Institute of Computer Studies</span>
+            </div>
+        </div>
+        <ul class="main-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="academics.html">Academics</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="campus-life.html" class="active-link">Campus Life</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </header>
+
+    <section class="campus-hero">
+        <h1>Life at GUNI</h1>
+        <p>300 Acres of Learning, Innovation, and Growth</p>
+    </section>
+
+    <section class="feature-section">
+        <div class="feature-text">
+            <h2>A Lush Green Ecosystem</h2>
+            <p>The Ganpat Vidyanagar campus is a sprawling 300-acre green haven. Designed to provide a serene and pollution-free environment, the campus features extensive tree plantations, manicured gardens, and open green spaces perfect for outdoor study sessions and relaxation.</p>
+            <p>Our commitment to sustainability includes green campus initiatives, solar energy adoption, and organized tree-planting drives, creating an eco-friendly atmosphere that enhances focus and well-being.</p>
+        </div>
+        <div class="feature-image-grid">
+            <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80" alt="Green Campus View" class="large-img">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" alt="Nature Walkways">
+            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=400&q=80" alt="Student studying outdoors">
+        </div>
+    </section>
+
+    <section class="feature-section reverse">
+        <div class="feature-text">
+            <h2>Championship Sports Facilities</h2>
+            <p>Physical fitness is a core part of the student experience at AMPICS. The university boasts world-class sporting infrastructure to help students excel outside the classroom.</p>
+            <p>Facilities include a massive cricket ground, football fields, basketball courts, and a fully equipped indoor gymnasium. We regularly host inter-college tournaments and athletic meets, fostering teamwork, leadership, and university pride.</p>
+        </div>
+        <div class="feature-image-grid">
+            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80" alt="Sports Stadium" class="large-img">
+            <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=400&q=80" alt="Basketball Court">
+            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=400&q=80" alt="Football Turf">
+        </div>
+    </section>
+
+    <section class="feature-section">
+        <div class="feature-text">
+            <h2>Culture & Community Impact</h2>
+            <p>Campus life is highly energetic, driven by dynamic student initiatives and massive cultural festivals. The flagship <strong>Yuvarangat Navratri Celebration</strong> brings thousands of students together for epic nights of Garba, fostering deep cultural roots.</p>
+            <p>Beyond celebrations, students actively participate in social outreach. Through the <strong>National Service Scheme (NSS)</strong> camps and voluntary movements, students engage in community service, rural development, and health awareness drives, building strong leadership and empathy.</p>
+        </div>
+        <div class="feature-image-grid">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="Cultural Dance Festival" class="large-img">
+            <img src="https://images.unsplash.com/photo-1523580494112-071d16940a1c?auto=format&fit=crop&w=400&q=80" alt="Student Community Meeting">
+            <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=400&q=80" alt="Campus Festivities">
+        </div>
+    </section>
+
+    <section class="amenities-strip">
+        <h2>World-Class Campus Amenities</h2>
+        <div class="amenities-grid">
+            <div class="amenity-card"><h3>🏢 Mega Hostels</h3></div>
+            <div class="amenity-card"><h3>☕ Central Cafeteria</h3></div>
+            <div class="amenity-card"><h3>🎭 Open Air Theater</h3></div>
+            <div class="amenity-card"><h3>🚌 Dedicated Transport</h3></div>
+            <div class="amenity-card"><h3>🛒 Shopping Center</h3></div>
+            <div class="amenity-card"><h3>🏦 Bank & ATMs</h3></div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Ganpat University - Acharya Motibhai Patel Institute of Computer Studies.</p>
+    </footer>
+
+    <script>
+        if (performance.getEntriesByType("navigation")[0].type === "reload") {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

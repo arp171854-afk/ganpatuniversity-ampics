@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | AMPICS - Ganpat University</title>
+    <style>
+        /* --- GUNI OFFICIAL BRAND COLORS --- */
+        :root {
+            --guni-red: #b42126;
+            --guni-yellow: #f8b01d;
+            --guni-blue: #0b1c3c;
+            --light-grey: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+        body { background-color: var(--light-grey); color: #333; line-height: 1.6; }
+
+        /* --- 1. HEADER (Matches other pages) --- */
+        .top-bar { background-color: var(--guni-red); color: white; display: flex; justify-content: space-between; padding: 8px 50px; font-size: 12px; font-weight: bold; }
+        .top-bar a { color: white; text-decoration: none; margin-left: 20px; transition: 0.2s; }
+        .top-bar a:hover { color: var(--guni-yellow); }
+
+        .main-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background-color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 60px; }
+        .institute-name { color: var(--guni-blue); font-size: 20px; font-weight: bold; line-height: 1.2; }
+        .institute-sub { font-size: 14px; color: #666; font-weight: normal; }
+        .main-nav { list-style: none; display: flex; align-items: center; }
+        .main-nav li { margin-left: 25px; padding: 10px 0; }
+        .main-nav a { color: var(--guni-blue); text-decoration: none; font-size: 14px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        .main-nav a:hover { color: var(--guni-red); }
+        .active-link { color: var(--guni-red) !important; border-bottom: 2px solid var(--guni-red); padding-bottom: 5px; }
+
+        /* --- 2. CONTACT HERO --- */
+        .contact-hero {
+            width: 100%; height: 250px; background-color: var(--guni-blue);
+            background: linear-gradient(rgba(11,28,60,0.85), rgba(11,28,60,0.85)), url('images/main-bg.jpg') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; border-bottom: 5px solid var(--guni-yellow);
+        }
+        .contact-hero h1 { font-size: 42px; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- 3. CONTACT LAYOUT --- */
+        .contact-container { display: flex; max-width: 1000px; margin: 50px auto; background: white; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); overflow: hidden; }
+        
+        /* Left Side: Info Box */
+        .contact-info { flex: 1; background: var(--guni-blue); color: white; padding: 40px; }
+        .contact-info h3 { color: var(--guni-yellow); font-size: 24px; margin-bottom: 20px; }
+        .info-item { margin-bottom: 25px; }
+        .info-item h4 { font-size: 16px; margin-bottom: 5px; color: #ddd; }
+        .info-item p { font-size: 15px; font-weight: bold; }
+
+        /* Right Side: The Form */
+        .contact-form-box { flex: 2; padding: 40px; }
+        .contact-form-box h2 { color: var(--guni-blue); margin-bottom: 20px; font-size: 28px; }
+        
+        .form-group { margin-bottom: 20px; position: relative; }
+        .form-group label { display: block; font-size: 14px; color: #555; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 4px;
+            font-size: 15px; transition: 0.3s; background: var(--light-grey);
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--guni-blue); outline: none; background: white; }
+        
+        /* Error Message Styling */
+        .error-msg { color: var(--guni-red); font-size: 12px; font-weight: bold; margin-top: 5px; display: none; }
+        .input-error { border-color: var(--guni-red) !important; background: #fff0f0 !important; }
+
+        .submit-btn {
+            background: var(--guni-red); color: white; border: none; padding: 15px 30px; font-size: 16px; font-weight: bold;
+            border-radius: 4px; cursor: pointer; transition: 0.3s; width: 100%; text-transform: uppercase;
+        }
+        .submit-btn:hover { background: var(--guni-blue); }
+
+        /* Success Message Box */
+        #success-message {
+            display: none; background: #d4edda; color: #155724; border: 1px solid #c3e6cb;
+            padding: 15px; margin-bottom: 20px; border-radius: 4px; text-align: center; font-weight: bold;
+        }
+
+        /* --- 4. FOOTER --- */
+        .main-footer { background-color: #050d1e; color: #888; padding: 40px 50px; text-align: center; font-size: 14px; }
+
+        /* Mobile Fix */
+        @media (max-width: 768px) {
+            .contact-container { flex-direction: column; margin: 20px; }
+            .top-bar, .main-header { flex-direction: column; text-align: center; }
+            .main-nav { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="logo.png" alt="GUNI Logo" class="logo-img" onerror="this.src='logo.png'">
+            <div class="institute-name">Ganpat University <br><span class="institute-sub">AMPICS</span></div>
+        </div>
+        <ul class="main-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="academics.html">Academics</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="campus-life.html">Campus Life</a></li>
+            <li><a href="contact.html" class="active-link">Contact</a></li>
+        </ul>
+    </header>
+
+    <section class="contact-hero">
+        <h1>Get In Touch</h1>
+    </section>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h3>Campus Directory</h3>
+            <div class="info-item">
+                <h4>Address</h4>
+                <p>Ganpat Vidyanagar, Mehsana-Gozaria Highway, Gujarat 384012</p>
+            </div>
+            <div class="info-item">
+                <h4>Admissions Helpline</h4>
+                <p>+91 1800 233 1234</p>
+            </div>
+            <div class="info-item">
+                <h4>Email ID</h4>
+                <p>info.ampics@ganpatuniversity.ac.in</p>
+            </div>
+        </div>
+
+        <div class="contact-form-box">
+            <h2>Send an Inquiry</h2>
+            
+            <div id="success-message">✅ Your message has been sent successfully! We will contact you soon.</div>
+
+           <form action="https://api.web3forms.com/submit" method="POST" id="inquiryForm">
+                
+                <input type="hidden" name="access_key" value="10035328-11d4-4c01-97d9-55419fd243c4">
+                
+                <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" id="userName" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="number" name="phone" id="userPhone" placeholder="Enter 10-digit mobile number" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" id="userEmail" placeholder="student@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" id="userMessage" rows="4" placeholder="How can we help you?" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Ganpat University - AMPICS.</p>
+    </footer>
+
+    
+</body>
+</html>
